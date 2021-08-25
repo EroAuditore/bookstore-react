@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios from 'axios';
 
 const LOAD_BOOKS = 'bookStore/books/LOAD_BOOKS';
@@ -17,6 +18,7 @@ const loadSuccess = (payload) => ({
   type: LOAD_SUCCESS,
   payload,
 });
+
 const loadFail = (payload) => ({
   type: LOAD_FAIL,
   payload,
@@ -59,13 +61,13 @@ const fetchBooks = () => (dispatch) => {
   axios
     .get(`${endPoint}/${key}/books`)
     .then((response) => {
-      dispatch(loadSuccess(response.data));
+      console.log('response', response.data);
+      if (response.data !== '') dispatch(loadSuccess(response.data));
     })
     .catch(() => {
       dispatch(loadFail());
     });
 };
 
-export {
-  reducer as default, addBook, removeBook, fetchBooks,
-};
+export { reducer as default, addBook, removeBook, fetchBooks };
+/* eslint-enable */

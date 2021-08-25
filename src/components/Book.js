@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/books';
+import { fetchBooks, removeBook } from '../redux/books/books';
 
 const Book = () => {
-  const state = useSelector((state) => state);
-  const { bookStore } = state;
   const dispatch = useDispatch();
+  const bookStore = useSelector((state) => state.bookStore.books);
+
   const remove = (e) => {
     dispatch(removeBook(e.target.id));
   };
+
+  useEffect(() => {
+    dispatch(fetchBooks());
+  }, []);
 
   return (
     <div>
