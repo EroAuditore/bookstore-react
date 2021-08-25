@@ -9,7 +9,9 @@
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="#">Live Demo</a>
+
+    <a href="#"></a>
+
     ·
     <a href="https://github.com/eroauditore/bookstore-react/issues">Report Bug</a>
     ·
@@ -85,9 +87,14 @@ A Bookstore project with React JS
    npm start
    ```
 
+## Optional
+
+- If you want to see the redux state and the actions, just install [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension#installation) for your browser and all the configuration is already in this project
+  ![image](https://cloud.githubusercontent.com/assets/7957859/18002950/aacb82fc-6b93-11e6-9ae9-609862c18302.png)
+
 ## Usage
 
-- Practice to setup a react js and make a bookstore with UI functionality and Redux.
+- Practice to setup a react js and add and remove books from bookstore with UI functionality and Redux.
 
 ## Roadmap
 
@@ -108,6 +115,7 @@ Contributions are what make the open source community such an amazing place to b
 License Free.
 
 ## Acknowledgements
+
 
 - [GitHub Pages](https://pages.github.com)
 - [WebPack](https://webpack.js.org/)
