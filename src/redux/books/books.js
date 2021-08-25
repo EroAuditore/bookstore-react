@@ -59,11 +59,9 @@ const reducer = (state = initialState, action) => {
     case ADD_BOOK:
       return { ...state };
     case ADD_SUCCESS:
-      let newState = state.books;
-      newState[action.payload.item_id] = [{ title: 'new', category: 'cat' }];
       return {
         ...state,
-        books: newState,
+        books: [...state.books, action.payload],
       };
     case ADD_FAIL:
       return { ...state };
@@ -84,7 +82,18 @@ const fetchBooks = () => (dispatch) => {
   axios
     .get(`${endPoint}/${key}/books`)
     .then((response) => {
-      if (response.data !== '') dispatch(loadSuccess(response.data));
+      if (response.data !== '') {
+        let bookstore = [];
+        bookstore = Object.entries(response.data).map((book) => {
+          return {
+            item_id: book[0],
+            title: book[1][0].title,
+            category: book[1][0].category,
+          };
+        });
+
+        dispatch(loadSuccess(bookstore));
+      }
     })
     .catch(() => {
       dispatch(loadFail());
@@ -97,7 +106,6 @@ const addNewBook = (book) => (dispatch) => {
     .post(`${endPoint}/${key}/books`, book)
     .then(() => {
       dispatch(addSuccess(book));
-      dispatch(fetchBooks());
     })
     .catch(() => {
       dispatch(addFail());

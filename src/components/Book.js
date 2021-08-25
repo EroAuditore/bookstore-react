@@ -16,19 +16,19 @@ const Book = () => {
 
   return (
     <div>
-      {Object.entries(bookStore).map((book) => (
-        <li key={book[0]}>
+      {bookStore.map((book) => (
+        <li key={book.item_id}>
           <p>
             Title:
-            {book[1][0].title}
+            {book.title}
           </p>
           <p>
             Category:
-            {book[1][0].category}
+            {book.category}
           </p>
           <button
             type="button"
-            id={book[0]}
+            id={book.item_id}
             onClick={(e) => {
               remove(e);
             }}
