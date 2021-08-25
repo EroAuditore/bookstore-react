@@ -1,4 +1,3 @@
-/* eslint-disable */
 import axios from 'axios';
 
 const LOAD_BOOKS = 'bookStore/books/LOAD_BOOKS';
@@ -10,6 +9,8 @@ const ADD_SUCCESS = 'bookStore/books/ADD_SUCCESS';
 const ADD_FAIL = 'bookStore/books/ADD_SUCCESS';
 
 const REMOVE_BOOK = 'bookStore/books/REMOVE_BOOK';
+const REMOVE_SUCCESS = 'bookStore/books/REMOVE_SUCCESS';
+const REMOVE_FAIL = 'bookStore/books/REMOVE_FAIL';
 
 const initialState = { books: [] };
 
@@ -48,6 +49,16 @@ const removeBook = (payload) => ({
   payload,
 });
 
+const removeSuccess = (payload) => ({
+  type: REMOVE_SUCCESS,
+  payload,
+});
+
+const removeFail = (payload) => ({
+  type: REMOVE_FAIL,
+  payload,
+});
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_BOOKS:
@@ -65,8 +76,20 @@ const reducer = (state = initialState, action) => {
       };
     case ADD_FAIL:
       return { ...state };
+
     case REMOVE_BOOK: {
-      return state.filter((book) => book.id !== action.payload);
+      return { ...state };
+    }
+    case REMOVE_SUCCESS: {
+      return {
+        ...state,
+        books: [
+          ...state.books.filter((book) => book.item_id !== action.payload),
+        ],
+      };
+    }
+    case REMOVE_FAIL: {
+      return { state };
     }
     default:
       return state;
@@ -84,13 +107,11 @@ const fetchBooks = () => (dispatch) => {
     .then((response) => {
       if (response.data !== '') {
         let bookstore = [];
-        bookstore = Object.entries(response.data).map((book) => {
-          return {
-            item_id: book[0],
-            title: book[1][0].title,
-            category: book[1][0].category,
-          };
-        });
+        bookstore = Object.entries(response.data).map((book) => ({
+          item_id: book[0],
+          title: book[1][0].title,
+          category: book[1][0].category,
+        }));
 
         dispatch(loadSuccess(bookstore));
       }
@@ -112,5 +133,18 @@ const addNewBook = (book) => (dispatch) => {
     });
 };
 
-export { reducer as default, addNewBook, removeBook, fetchBooks };
-/* eslint-enable */
+const deleteBook = (book) => (dispatch) => {
+  dispatch(removeBook());
+  axios
+    .delete(`${endPoint}/${key}/books/${book}`)
+    .then(() => {
+      dispatch(removeSuccess(book));
+    })
+    .catch(() => {
+      dispatch(removeFail());
+    });
+};
+
+export {
+  reducer as default, addNewBook, deleteBook, fetchBooks,
+};
