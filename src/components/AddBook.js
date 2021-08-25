@@ -2,29 +2,29 @@ import React, { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { v4 as generateId } from 'uuid';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../redux/books/books';
+import { addNewBook } from '../redux/books/books';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
+  const [category, setCategory] = useState('');
   const newBook = {
-    id: generateId(),
+    item_id: generateId(),
     title,
-    author,
+    category,
   };
   const dispatch = useDispatch();
 
   const add = () => {
-    dispatch(addBook(newBook));
+    dispatch(addNewBook(newBook));
     setTitle('');
-    setAuthor('');
+    setCategory('');
   };
 
   const handleChange = (event) => {
     if (event.target.id === 'title') {
       setTitle(event.target.value);
-    } else if (event.target.id === 'author') {
-      setAuthor(event.target.value);
+    } else if (event.target.id === 'category') {
+      setCategory(event.target.value);
     }
   };
 
@@ -42,12 +42,12 @@ const AddBook = () => {
             }}
           />
         </label>
-        <label htmlFor="author">
-          Author:
+        <label htmlFor="category">
+          Category:
           <input
             type="text"
-            id="author"
-            value={author}
+            id="category"
+            value={category}
             onChange={(e) => {
               handleChange(e);
             }}

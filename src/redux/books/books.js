@@ -4,7 +4,11 @@ import axios from 'axios';
 const LOAD_BOOKS = 'bookStore/books/LOAD_BOOKS';
 const LOAD_SUCCESS = 'bookStore/books/LOAD_SUCCESS';
 const LOAD_FAIL = 'bookStore/books/LOAD_FAIL';
+
 const ADD_BOOK = 'bookStore/books/ADD_BOOK';
+const ADD_SUCCESS = 'bookStore/books/ADD_SUCCESS';
+const ADD_FAIL = 'bookStore/books/ADD_SUCCESS';
+
 const REMOVE_BOOK = 'bookStore/books/REMOVE_BOOK';
 
 const initialState = { books: [] };
@@ -29,6 +33,16 @@ const addBook = (payload) => ({
   payload,
 });
 
+const addSuccess = (payload) => ({
+  type: ADD_SUCCESS,
+  payload,
+});
+
+const addFail = (payload) => ({
+  type: ADD_FAIL,
+  payload,
+});
+
 const removeBook = (payload) => ({
   type: REMOVE_BOOK,
   payload,
@@ -39,11 +53,20 @@ const reducer = (state = initialState, action) => {
     case LOAD_BOOKS:
       return { ...state };
     case LOAD_SUCCESS:
-      return { ...state, books: action.payload.data };
+      return { ...state, books: action.payload };
     case LOAD_FAIL:
       return { ...state };
     case ADD_BOOK:
-      return { ...state, books: action.payload };
+      return { ...state };
+    case ADD_SUCCESS:
+      let newState = state.books;
+      newState[action.payload.item_id] = [{ title: 'new', category: 'cat' }];
+      return {
+        ...state,
+        books: newState,
+      };
+    case ADD_FAIL:
+      return { ...state };
     case REMOVE_BOOK: {
       return state.filter((book) => book.id !== action.payload);
     }
@@ -61,7 +84,6 @@ const fetchBooks = () => (dispatch) => {
   axios
     .get(`${endPoint}/${key}/books`)
     .then((response) => {
-      console.log('response', response.data);
       if (response.data !== '') dispatch(loadSuccess(response.data));
     })
     .catch(() => {
@@ -69,5 +91,18 @@ const fetchBooks = () => (dispatch) => {
     });
 };
 
-export { reducer as default, addBook, removeBook, fetchBooks };
+const addNewBook = (book) => (dispatch) => {
+  dispatch(addBook());
+  axios
+    .post(`${endPoint}/${key}/books`, book)
+    .then(() => {
+      dispatch(addSuccess(book));
+      dispatch(fetchBooks());
+    })
+    .catch(() => {
+      dispatch(addFail());
+    });
+};
+
+export { reducer as default, addNewBook, removeBook, fetchBooks };
 /* eslint-enable */
