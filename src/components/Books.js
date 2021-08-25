@@ -1,19 +1,19 @@
 import React from 'react';
+import Book from './Book';
+import AddBook from './AddBook';
 
-const Books = () => {
-  return (
+const Books = () => (
+  <div>
     <div>
-      <div>
-        <h2>Books</h2>
-        <ul>
-          <BookItem />
-        </ul>
-      </div>
-      <div>
-        <AddBooks />
-      </div>
+      <h2>Books</h2>
+      <ul>
+        <Book />
+      </ul>
     </div>
-  );
-};
+    <div>
+      <AddBook />
+    </div>
+  </div>
+);
 
 export default Books;

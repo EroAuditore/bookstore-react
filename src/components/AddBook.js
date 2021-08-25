@@ -4,7 +4,7 @@ import { v4 as generateId } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../redux/books/books';
 
-const AddItem = () => {
+const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const newBook = {
@@ -66,4 +66,4 @@ const AddItem = () => {
   );
 };
 
-export default AddItem;
+export default AddBook;

@@ -1,17 +1,18 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { removeBook } from '../redux/books/books';
 
-const Item = () => {
+const Book = () => {
   const state = useSelector((state) => state);
-  const { books } = state;
+  const { bookStore } = state;
   const dispatch = useDispatch();
   const remove = (e) => {
     dispatch(removeBook(e.target.id));
   };
+
   return (
     <div>
-      {books.map((book) => (
+      {bookStore.map((book) => (
         <li key={book.id}>
           <p>
             Title:
@@ -36,4 +37,4 @@ const Item = () => {
   );
 };
 
-export default Item;
+export default Book;
