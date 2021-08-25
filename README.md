@@ -9,7 +9,9 @@
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
     <br />
+
     <a href="#"></a>
+
     ·
     <a href="https://github.com/eroauditore/bookstore-react/issues">Report Bug</a>
     ·
@@ -113,6 +115,7 @@ Contributions are what make the open source community such an amazing place to b
 License Free.
 
 ## Acknowledgements
+
 
 - [GitHub Pages](https://pages.github.com)
 - [WebPack](https://webpack.js.org/)
