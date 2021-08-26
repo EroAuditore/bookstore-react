@@ -4,12 +4,7 @@ import AddBook from './AddBook';
 
 const Books = () => (
   <div>
-    <div>
-      <h2>Books</h2>
-      <ul>
-        <Book />
-      </ul>
-    </div>
+    <Book />
     <div>
       <AddBook />
     </div>
