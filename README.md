@@ -9,9 +9,7 @@
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-
-    <a href="#"></a>
-
+    <a href="https://microreact-bookstore.netlify.app/">Live Demo</a>
     ·
     <a href="https://github.com/eroauditore/bookstore-react/issues">Report Bug</a>
     ·
@@ -47,6 +45,8 @@
 ## About The Project
 
 A Bookstore project with React JS
+
+![image](https://user-images.githubusercontent.com/60273425/131027818-e4cb20f0-beb9-4ca2-bc55-f172d0685f1f.png)
 
 ### Built With
 
@@ -115,7 +115,6 @@ Contributions are what make the open source community such an amazing place to b
 License Free.
 
 ## Acknowledgements
-
 
 - [GitHub Pages](https://pages.github.com)
 - [WebPack](https://webpack.js.org/)
