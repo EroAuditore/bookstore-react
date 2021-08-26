@@ -21,8 +21,9 @@ const Book = () => {
         <div key={book.item_id} className="Lesson-Panel">
           <div className="card__content">
             <div>
-              <p>{book.category}</p>
-              <p>{book.title}</p>
+              <p className="School-of">{book.category}</p>
+              <p className="title">{book.title}</p>
+              <p className="Suzanne-Collins">Suzanne Collins</p>
             </div>
             <div className="card__actions">
               <ul className="card__links">
@@ -42,8 +43,18 @@ const Book = () => {
           </div>
           <div className="set-size charts-container">
             <Progress />
+            <div className="wrapper__percent">
+              <span className="-Percent-Complete">64%</span>
+              <span className="Completed">Completed</span>
+            </div>
           </div>
-          <div> update progres </div>
+          <div className="chapter__container">
+            <span className="Current-Chapter">Current Chapter</span>
+            <span className="Current-Lesson">Chapter 17</span>
+            <div className="Rectangle-2">
+              <span className="Update-progress">Update progress</span>
+            </div>
+          </div>
         </div>
       ))}
     </div>
