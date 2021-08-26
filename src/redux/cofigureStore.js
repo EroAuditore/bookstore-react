@@ -1,7 +1,8 @@
 import {
   createStore, combineReducers, applyMiddleware, compose,
 } from 'redux';
-import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+
 import booksReducer from './books/books';
 
 const reducer = combineReducers({
@@ -11,7 +12,7 @@ const reducer = combineReducers({
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-disable no-underscore-dangle */
-const store = createStore(reducer, composeEnhancers(applyMiddleware(logger)));
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 /* eslint-enable */
 
 export default store;

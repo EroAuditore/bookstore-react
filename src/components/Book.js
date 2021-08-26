@@ -1,30 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/books';
+import { fetchBooks, deleteBook } from '../redux/books/books';
 
 const Book = () => {
-  const state = useSelector((state) => state);
-  const { bookStore } = state;
   const dispatch = useDispatch();
+  const bookStore = useSelector((state) => state.bookStore.books);
+
   const remove = (e) => {
-    dispatch(removeBook(e.target.id));
+    dispatch(deleteBook(e.target.id));
   };
+
+  useEffect(() => {
+    dispatch(fetchBooks());
+  }, []);
 
   return (
     <div>
       {bookStore.map((book) => (
-        <li key={book.id}>
+        <li key={book.item_id}>
           <p>
             Title:
             {book.title}
           </p>
           <p>
-            Author:
-            {book.author}
+            Category:
+            {book.category}
           </p>
           <button
             type="button"
-            id={book.id}
+            id={book.item_id}
             onClick={(e) => {
               remove(e);
             }}
