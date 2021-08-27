@@ -9,7 +9,7 @@
     <a href="#"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="#">Live Demo</a>
+    <a href="https://micro-bookstore.netlify.app/">Live Demo</a>
     ·
     <a href="https://github.com/eroauditore/bookstore-react/issues">Report Bug</a>
     ·
