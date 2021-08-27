@@ -30,38 +30,39 @@ const AddBook = () => {
 
   return (
     <div>
-      <form>
-        <label htmlFor="title">
-          Title:
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-        </label>
-        <label htmlFor="category">
-          Category:
-          <input
-            type="text"
-            id="category"
-            value={category}
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-        </label>
+      <form className="form-add">
+        <input
+          className="input-title"
+          placeholder="Title"
+          type="text"
+          id="title"
+          value={title}
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        />
+
+        <input
+          className="input-title"
+          placeholder="Category"
+          type="text"
+          id="category"
+          value={category}
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        />
+
+        <a
+          href="/#"
+          className="btn-add"
+          onClick={() => {
+            add();
+          }}
+        >
+          Add Book
+        </a>
       </form>
-      <button
-        type="button"
-        onClick={() => {
-          add();
-        }}
-      >
-        Add Book
-      </button>
     </div>
   );
 };

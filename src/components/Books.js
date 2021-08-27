@@ -3,14 +3,11 @@ import Book from './Book';
 import AddBook from './AddBook';
 
 const Books = () => (
-  <div>
-    <div>
-      <h2>Books</h2>
-      <ul>
-        <Book />
-      </ul>
-    </div>
-    <div>
+  <div className="container-books">
+    <Book />
+    <div className="Line"> </div>
+    <div className="form-Panel">
+      <p className="title-2">ADD NEW BOOK</p>
       <AddBook />
     </div>
   </div>
